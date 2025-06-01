@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  plant_id: 1
+  user_id: 1
+  last_watered_date: 2025-06-01 16:50:57
+  time_changed: 1
+  growth_status: 1
+  status: false
+
+two:
+  plant_id: 1
+  user_id: 1
+  last_watered_date: 2025-06-01 16:50:57
+  time_changed: 1
+  growth_status: 1
+  status: false
