@@ -1,70 +1,24 @@
-class PlantsController < ApplicationController
-  before_action :set_plant, only: %i[ show edit update destroy ]
+# days_to_water is a static number that represents the time gap between needing to water a specific plant
+# growth_req is a static number that represents the base amount of times you need to water the plant until it is fully grown
 
-  # GET /plants or /plants.json
+class PlantsController < ApplicationController
   def index
     @plants = Plant.all
+    render :index
   end
-
-  # GET /plants/1 or /plants/1.json
   def show
+    @plant = Plant.find_by(id: params[:id])
+    render :show
   end
-
-  # GET /plants/new
-  def new
-    @plant = Plant.new
-  end
-
-  # GET /plants/1/edit
-  def edit
-  end
-
-  # POST /plants or /plants.json
-  def create
-    @plant = Plant.new(plant_params)
-
-    respond_to do |format|
-      if @plant.save
-        format.html { redirect_to @plant, notice: "Plant was successfully created." }
-        format.json { render :show, status: :created, location: @plant }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @plant.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /plants/1 or /plants/1.json
   def update
-    respond_to do |format|
-      if @plant.update(plant_params)
-        format.html { redirect_to @plant, notice: "Plant was successfully updated." }
-        format.json { render :show, status: :ok, location: @plant }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @plant.errors, status: :unprocessable_entity }
-      end
-    end
+    @plant = Plant.find_by(id: params[:id])
+    @plant.update(
+      name: params[:name] || @plant.name,
+      description: params[:description] || @plant.description,
+      amount_of_sun: params[:amount_of_sun] || @plant.amount_of_sun,
+      days_to_water: params[:days_to_water] || @plant.days_to_water,
+      growth_req: params[:growth_req] || @plant.growth_req
+    )
+    render :show
   end
-
-  # DELETE /plants/1 or /plants/1.json
-  def destroy
-    @plant.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to plants_path, status: :see_other, notice: "Plant was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_plant
-      @plant = Plant.find(params.expect(:id))
-    end
-
-    # Only allow a list of trusted parameters through.
-    def plant_params
-      params.fetch(:plant, {})
-    end
 end
