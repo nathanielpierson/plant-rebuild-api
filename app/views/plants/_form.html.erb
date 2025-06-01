@@ -1,0 +1,17 @@
+<%= form_with(model: plant) do |form| %>
+  <% if plant.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(plant.errors.count, "error") %> prohibited this plant from being saved:</h2>
+
+      <ul>
+        <% plant.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
