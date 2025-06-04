@@ -1,0 +1,2 @@
+module PlantCountsHelper
+end

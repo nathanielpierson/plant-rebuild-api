@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  plant_id: 1
+  user_id: 1
+  count_finished: 1
+  count_growing: 1
+
+two:
+  plant_id: 1
+  user_id: 1
+  count_finished: 1
+  count_growing: 1
