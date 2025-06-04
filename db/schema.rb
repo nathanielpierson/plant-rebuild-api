@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_01_193155) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_04_001545) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "plant_counts", force: :cascade do |t|
+    t.integer "plant_id"
+    t.integer "user_id"
+    t.integer "count_finished"
+    t.integer "count_growing"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "plants", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -23,5 +32,25 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_01_193155) do
     t.integer "days_to_water"
     t.string "image_url"
     t.integer "growth_req"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer "plant_id"
+    t.integer "user_id"
+    t.datetime "last_watered_date"
+    t.integer "time_changed"
+    t.integer "growth_status"
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 end
