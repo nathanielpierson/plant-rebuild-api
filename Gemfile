@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 
-# C O R S   G E M   I S   D E F I N I T E L Y    H E R E
+# C O R S    G E M    I S    D E F I N I T E L Y    H E R E
 
 
 
