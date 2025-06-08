@@ -1,6 +1,10 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "https://plant-capstone-frontend.onrender.com", "localhost:5173"
-    resource "*", headers: :any, credentials: true, methods: [ :get, :post, :patch, :put, :delete ]
+    origins "https://plant-capstone-frontend.onrender.com"
+
+    resource "*",
+      headers: :any,
+      methods: [ :get, :post, :patch, :put, :delete, :options, :head ],
+      credentials: false
   end
 end
