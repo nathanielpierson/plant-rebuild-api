@@ -4,8 +4,11 @@ class UsersController < ApplicationController
     render :index
   end
   def show
-    @user = User.find_by(id: current_user.id)
-    render :show
+    if current_user
+      render json: current_user
+    else
+      render json: { error: "Not logged in" }, status: :unauthorized
+    end
   end
   def create
     user = User.new(
