@@ -1,10 +1,10 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.action_dispatch.default_headers = {
-  "Access-Control-Request-Method" => "*",
-  "Access-Control-Allow-Credentials" => true
-}
+  #   config.action_dispatch.default_headers = {
+  #   "Access-Control-Request-Method" => "*",
+  #   "Access-Control-Allow-Credentials" => true
+  # }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
