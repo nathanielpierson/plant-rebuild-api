@@ -91,4 +91,4 @@ Shows detailed information about a plant type, including its description, water 
 
 **Nathaniel Pierson**  
 Full-stack developer and Actualize bootcamp graduate.  
-[LinkedIn](https://www.linkedin.com/in/nathanielpierson) | [Portfolio](#)
+[LinkedIn](https://www.linkedin.com/in/nathanielpierson) | [Portfolio](https://kale-polygon-bht3.squarespace.com)
