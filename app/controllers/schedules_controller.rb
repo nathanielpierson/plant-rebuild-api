@@ -39,7 +39,6 @@ class SchedulesController < ApplicationController
         @schedule = Schedule.find_by(id: x)
         @schedule.update(
           time_changed: (Date.current - Date.parse(@schedule.last_watered_date.to_s)).to_i * 24
-            # time_changed: @schedule.time_changed+1
           )
       end
         x += 1
