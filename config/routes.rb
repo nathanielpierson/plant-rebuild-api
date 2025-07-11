@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
+  get "/" => "main#index"
+
   get "/users" => "users#index"
   get "/users/current" => "users#show"
   post "/users" => "users#create"
