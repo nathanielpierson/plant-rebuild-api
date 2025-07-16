@@ -19,7 +19,6 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-
 development:
   <<: *default
   database: plant_rebuild_api_development
@@ -79,20 +78,17 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  primary: &primary_production
-    <<: *default
-    database: plant_rebuild_api_production
-    username: plant_rebuild_api
-    password: <%= ENV["PLANT_REBUILD_API_DATABASE_PASSWORD"] %>
+  primary:
+    url: <%= ENV["DATABASE_URL"] %>
   cache:
-    <<: *primary_production
-    database: plant_rebuild_api_production_cache
+    url: <%= ENV["DATABASE_URL"] %>
+    database_tasks: true
     migrations_paths: db/cache_migrate
   queue:
-    <<: *primary_production
-    database: plant_rebuild_api_production_queue
+    url: <%= ENV["DATABASE_URL"] %>
+    database_tasks: true
     migrations_paths: db/queue_migrate
   cable:
-    <<: *primary_production
-    database: plant_rebuild_api_production_cable
+    url: <%= ENV["DATABASE_URL"] %>
+    database_tasks: true
     migrations_paths: db/cable_migrate
