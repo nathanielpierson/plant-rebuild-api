@@ -24,7 +24,9 @@ Rails.application.routes.draw do
   patch "/reset" => "schedules#reset"
 
   get "/plant_counts" => "plant_counts#index"
-  put "/plant_counts/:id" => "plant_counts#update"
+  put "/plant_counts/all" => "plant_counts#update_all"
+  put "/plant_counts" => "plant_counts#update"
+  post "/plant_counts" => "plant_counts#create"
 
   post "/sessions" => "sessions#create"
 

@@ -4,18 +4,26 @@ class PlantCountsController < ApplicationController
     render :index
   end
   def update
-    @plant_count = PlantCount.find_by(id: params[:id])
-    # finds every instance of a schedule for this plant that is under the current user, i.e. all of current user's planted cabbages
-    plant = Schedule.where(plant_id: @plant_count.plant_id, user_id: current_user, status: true)
-    x = plant.length
-    @plant_count.update(
-      user_id: params[:user_id] || @plant_count.user_id,
-      plant_id: params[:plant_id] || @plant_count.plant_id,
-      count: x
-    )
-    p "plant is #{plant}, plant_count is #{@plant_count}"
-    p "plant dot length is #{x}"
-    p current_user
+    user = current_user.id
+    users_plants = PlantCount.where(user_id: user)
+    y = 0
+    while y < users_plants.length
+      @plant_count = users_plants[y]
+      # finds every instance of a schedule for this plant that is under the current user, i.e. all of current user's planted cabbages
+      if @plant_count.plant_id != nil
+        plant = Schedule.where(plant_id: @plant_count.plant_id, user_id: current_user, status: false)
+        x = plant.length
+        @plant_count.update(
+          user_id: params[:user_id] || @plant_count.user_id,
+          plant_id: params[:plant_id] || @plant_count.plant_id,
+          count_growing: x
+          )
+        p users_plants
+        p "users_plants dot length"
+        p users_plants.length
+      end
+      y += 1
+    end
     render :show
   end
   def update_all
