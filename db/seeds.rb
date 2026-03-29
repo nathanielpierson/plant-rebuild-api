@@ -162,7 +162,7 @@ Plant.create([
     amount_of_sun: 100,
     days_to_water: 30,
     growth_req: 3,
-    image_url: "https://www.parkseed.com/media/catalog/product/2/9/29377.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=740&width=740&canvas=740:740"
+    image_url: "https://desertsteel.net/cdn/shop/files/7ft-metal-saguaro-cactus-desert-background.jpg?v=1728381550&width=2000"
   },
   {
     name: "Cucumber",
@@ -234,7 +234,7 @@ Plant.create([
     amount_of_sun: 80,
     days_to_water: 3,
     growth_req: 3,
-    image_url: "https://cdn.shopify.com/s/files/1/0586/9374/6850/files/Basil_Italian_2-min_480x480.jpg?v=1676385479"
+    image_url: "https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147582967/images/herbs-basil-01.jpg"
   },
   {
     name: "Green Onion",
