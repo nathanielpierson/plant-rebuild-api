@@ -3,4 +3,5 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   has_many :schedules
   has_many :plant_counts
+  has_one :watering_can, dependent: :destroy
 end

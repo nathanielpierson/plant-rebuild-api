@@ -47,16 +47,49 @@ class SchedulesController < ApplicationController
   end
 
   def water
-    @schedule = Schedule.find_by(id: params[:id])
-    @schedule.update(
-    last_watered_date: Date.today,
-    growth_status: @schedule.growth_status + 1
-    )
-    if @schedule.growth_status == @schedule.plant.growth_req
-      @schedule.update(
-        status: true
-      )
+    unless current_user
+      render json: {}, status: :unauthorized
+      return
     end
+
+    @schedule = Schedule.find_by(id: params[:id])
+    unless @schedule&.user_id == current_user.id
+      render json: { error: "Schedule not found" }, status: :not_found
+      return
+    end
+
+    @empty_can = false
+    ActiveRecord::Base.transaction do
+      can = WateringCan.ensure_for(current_user)
+      can.lock!
+      if can.charges.to_i < 1
+        @empty_can = true
+        raise ActiveRecord::Rollback
+      end
+      can.update!(charges: can.charges - 1)
+
+      new_growth = @schedule.growth_status + 1
+      plant_req = @schedule.plant.growth_req
+      attrs = {
+        last_watered_date: Date.today,
+        growth_status: new_growth
+      }
+      attrs[:status] = true if new_growth >= plant_req
+      @schedule.update!(attrs)
+    end
+
+    if @empty_can
+      can = WateringCan.ensure_for(current_user)
+      render json: {
+        error: "Your watering can is empty. Refill when your cooldown allows (empty can only).",
+        charges: can.charges,
+        seconds_until_refill: can.seconds_until_refill,
+        can_refill: can.can_refill?
+      }, status: :unprocessable_entity
+      return
+    end
+
+    @schedule.reload
     render :show
   end
 

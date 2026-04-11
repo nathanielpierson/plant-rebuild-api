@@ -30,5 +30,8 @@ Rails.application.routes.draw do
 
   post "/sessions" => "sessions#create"
 
+  get "/watering_can" => "watering_cans#show"
+  post "/watering_can/refill" => "watering_cans#refill"
+
   post "/test" => "plant_counts#create"
 end

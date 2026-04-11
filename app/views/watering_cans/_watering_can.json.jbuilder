@@ -1,2 +1,10 @@
-json.extract! watering_can, :id, :created_at, :updated_at
-json.url watering_can_url(watering_can, format: :json)
+json.id watering_can.id
+json.user_id watering_can.user_id
+json.charges watering_can.charges
+json.last_filled watering_can.last_filled
+json.max_charges WateringCan::MAX_CHARGES
+json.refill_cooldown_seconds WateringCan::REFILL_COOLDOWN.to_i
+json.can_refill watering_can.can_refill?
+json.seconds_until_refill watering_can.seconds_until_refill
+json.created_at watering_can.created_at
+json.updated_at watering_can.updated_at
