@@ -18,9 +18,6 @@ class PlantCountsController < ApplicationController
           plant_id: params[:plant_id] || @plant_count.plant_id,
           count_growing: x
           )
-        p users_plants
-        p "users_plants dot length"
-        p users_plants.length
       end
       y += 1
     end
@@ -60,7 +57,6 @@ class PlantCountsController < ApplicationController
         y += 1
         end
       end
-      p x
       x += 1
     end
   end
