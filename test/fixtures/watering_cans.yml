@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  charges: 1
+  user_id: 1
+  last_filled: 2026-04-10 21:45:45
+
+two:
+  charges: 1
+  user_id: 1
+  last_filled: 2026-04-10 21:45:45

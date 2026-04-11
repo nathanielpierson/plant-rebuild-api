@@ -1,0 +1,2 @@
+class WateringCansController < ApplicationController
+end
